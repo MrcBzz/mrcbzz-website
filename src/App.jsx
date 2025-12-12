@@ -1,0 +1,162 @@
+import React, { useState, useEffect, useRef } from 'react';
+import { ExternalLink } from 'lucide-react';
+
+const Portfolio = () => {
+  const [activeProject, setActiveProject] = useState(0);
+  const projectRefs = useRef([]);
+
+  // Sample data structure - you'll fill this in later
+  const projects = [
+    {
+      id: 1,
+      title: 'Building My Personal Website',
+      tags: ['web', 'personal', 'writing'],
+      description: 'The journey of creating this space. From deciding I needed a home for my work to actually building it.',
+      images: [
+        '/api/placeholder/800/600',
+        '/api/placeholder/800/600',
+        '/api/placeholder/800/600',
+        '/api/placeholder/800/600'
+      ]
+    },
+    {
+      id: 2,
+      title: 'Another Project',
+      tags: ['design', 'creative', 'experiment'],
+      description: 'A brief description of what this project is about and why it matters.',
+      images: [
+        '/api/placeholder/800/600',
+        '/api/placeholder/800/600',
+        '/api/placeholder/800/600'
+      ]
+    },
+    // Add more projects here
+  ];
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + window.innerHeight / 2;
+      
+      projectRefs.current.forEach((ref, index) => {
+        if (ref) {
+          const { top, bottom } = ref.getBoundingClientRect();
+          const absoluteTop = top + window.scrollY;
+          const absoluteBottom = bottom + window.scrollY;
+          
+          if (scrollPosition >= absoluteTop && scrollPosition < absoluteBottom) {
+            setActiveProject(index);
+          }
+        }
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  return (
+    <div className="min-h-screen bg-white text-black">
+      {/* Header */}
+      <header className="border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-6 py-8 flex justify-between items-center">
+          <div>
+            <h1 className="text-4xl font-light mb-2">Marc</h1>
+            <div className="flex items-center gap-4">
+              <p className="text-gray-600">Writer & Creator</p>
+              <span className="text-gray-400">•</span>
+              <a 
+                href="https://x.com/mrcbzz"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-gray-600 hover:text-black transition-colors group"
+              >
+                <span className="text-sm">I share more on</span>
+                <svg 
+                  viewBox="0 0 24 24" 
+                  className="w-4 h-4 fill-current group-hover:scale-110 transition-transform"
+                  aria-hidden="true"
+                >
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                </svg>
+              </a>
+            </div>
+          </div>
+          <a
+            href="https://mrcbzz.substack.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 bg-sky-400 text-white px-6 py-3 rounded-lg hover:bg-sky-500 transition-colors"
+          >
+            Writing
+            <ExternalLink className="w-4 h-4" />
+          </a>
+        </div>
+      </header>
+
+      {/* Projects Section */}
+      <div className="relative">
+        {projects.length === 0 ? (
+          <div className="min-h-screen flex items-center justify-center">
+            <p className="text-gray-400 text-xl">No projects yet. Check back soon!</p>
+          </div>
+        ) : (
+          projects.map((project, index) => (
+            <div
+              key={project.id}
+              ref={el => projectRefs.current[index] = el}
+              className="relative min-h-screen"
+            >
+              <div className="max-w-7xl mx-auto px-6 py-20">
+                <div className="flex gap-12">
+                  {/* INFO PART - Left Column (1/3) - Sticky */}
+                  <div className="w-1/3 sticky top-32 self-start">
+                    <h2 className="text-3xl font-light mb-4">{project.title}</h2>
+                    
+                    {/* Tags */}
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      {project.tags.slice(0, 3).map(tag => (
+                        <span key={tag} className="text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-full">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Description */}
+                    <p className="text-gray-700 leading-relaxed">{project.description}</p>
+                  </div>
+
+                  {/* IMAGE PART - Right Column (2/3) - Scrolling Vertical Carousel */}
+                  <div className="w-2/3 space-y-8">
+                    {project.images.map((image, imgIndex) => (
+                      <div key={imgIndex} className="aspect-[4/3] bg-gray-100 rounded-lg overflow-hidden">
+                        <img 
+                          src={image} 
+                          alt={`${project.title} - Image ${imgIndex + 1}`}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Project Separator */}
+              {index < projects.length - 1 && (
+                <div className="border-b border-gray-200 mx-6"></div>
+              )}
+            </div>
+          ))
+        )}
+      </div>
+
+      {/* Footer */}
+      <footer className="border-t border-gray-200 py-8 mt-20">
+        <div className="max-w-7xl mx-auto px-6 text-center text-gray-500 text-sm">
+          <p>© {new Date().getFullYear()} Marc. All rights reserved.</p>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+export default Portfolio;
