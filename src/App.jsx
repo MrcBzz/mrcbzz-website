@@ -21,13 +21,13 @@ const Portfolio = () => {
     },
     {
       id: 2,
-      title: 'Another Project',
-      tags: ['design', 'creative', 'experiment'],
-      description: 'A brief description of what this project is about and why it matters.',
+      title: 'BUILDING MY PERSONAL WEBSITE',
+      tags: ['WEB', 'design', 'creative'],
+      description: '> On a Tuesday I decided I want a personal site \n> In two days I built this \n> Now I have a personal portfolio \n> Thanks to Anthropic and their free version of Claude Sonnet \n> ',         
       images: [
-        '/api/placeholder/800/600',
-        '/api/placeholder/800/600',
-        '/api/placeholder/800/600'
+        '/website-building/Screenshot1.png',
+        '/website-building/Screenshot2.png',
+        '/website-building/Screenshot3.png'
       ]
     },
     // Add more projects here
@@ -122,7 +122,7 @@ const Portfolio = () => {
                     </div>
 
                     {/* Description */}
-                    <p className="text-gray-700 leading-relaxed">{project.description}</p>
+                    <p className="text-gray-700 leading-relaxed whitespace-pre-line">{project.description}</p>
                   </div>
 
                   {/* IMAGE PART - Right Column (2/3) - Scrolling Vertical Carousel */}
