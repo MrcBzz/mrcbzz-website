@@ -9,14 +9,13 @@ const Portfolio = () => {
   const projects = [
     {
       id: 1,
-      title: 'Building My Personal Website',
-      tags: ['web', 'personal', 'writing'],
-      description: 'The journey of creating this space. From deciding I needed a home for my work to actually building it.',
+      title: 'LIVE - QUANT FINANCE TOOL',
+      tags: ['terminal-based', 'analysis', 'quant'],
+      description: '> taking inspiration from a guy on X \n> Im building a tool for quantitative data analysis \n> merges data from AsterDEX and Hyperliquid \n> data comes from api and websocket \n> smart money will know us \n>',
       images: [
-        '/api/placeholder/800/600',
-        '/api/placeholder/800/600',
-        '/api/placeholder/800/600',
-        '/api/placeholder/800/600'
+        '/projects/quant-finance-tool/asterdex-liquidation.png',
+        '/projects/quant-finance-tool/asterdex-live-liquidation.png',
+        '/projects/quant-finance-tool/asterdex-market-data.png'
       ]
     },
     {
@@ -25,9 +24,9 @@ const Portfolio = () => {
       tags: ['WEB', 'design', 'creative'],
       description: '> On a Tuesday I decided I want a personal site \n> In two days I built this \n> Now I have a personal portfolio \n> Thanks to Anthropic and their free version of Claude Sonnet \n> ',         
       images: [
-        '/website-building/Screenshot1.png',
-        '/website-building/Screenshot2.png',
-        '/website-building/Screenshot3.png'
+        '/projects/website-building/Screenshot1.png',
+        '/projects/website-building/Screenshot2.png',
+        '/projects/website-building/Screenshot3.png'
       ]
     },
     // Add more projects here
