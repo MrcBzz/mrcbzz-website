@@ -5,7 +5,7 @@ const Portfolio = () => {
   const [activeProject, setActiveProject] = useState(0);
   const projectRefs = useRef([]);
 
-  // Sample data structure - you'll fill this in later
+  // Projects data
   const projects = [
     {
       id: 1,
@@ -30,6 +30,62 @@ const Portfolio = () => {
       ]
     },
     // Add more projects here
+  ];
+
+  // Goals data - two types: 'progress' (with bar) or 'status' (with badge)
+  // Status options: 'not yet', 'in progress', 'done'
+  const goals = [
+    {
+      id: 1,
+      title: 'I read 3650 pages',
+      description: 'ten pages a day',
+      type: 'progress',
+      current: 320,
+      target: 3650,
+      unit: 'pages'
+    },
+    {
+      id: 2,
+      title: 'I develop 5 projects',
+      description: 'building things',
+      type: 'progress',
+      current: 1,
+      target: 5,
+      unit: 'projects'
+    },
+    {
+      id: 3,
+      title: 'I make friends (irl and online)',
+      description: 'dm me on X',
+      type: 'status',
+      status: 'in progress'
+    },
+    {
+      id: 4,
+      title: 'I earn at least 1 internet dollar',
+      description: 'first dollar is the hardest',
+      type: 'progress',
+      current: 0,
+      target: 1,
+      unit: '$'
+    },
+    {
+      id: 5,
+      title: 'I get rid of Youtube',
+      description: 'the last bad social in my life',
+      type: 'status',
+      status: 'in progress'
+    },
+    {
+      id: 6,
+      title: "I'm totally financially independent",
+      description: 'feeling the freedom',
+      type: 'progress',
+      current: 0,
+      target: 10000,
+      unit: '$ saved'
+    },
+    // Add more goals here
   ];
 
   useEffect(() => {
@@ -148,8 +204,58 @@ const Portfolio = () => {
         )}
       </div>
 
+      {/* Goals Section */}
+      <div className="border-t border-gray-300 mx-6 mt-20"></div>
+      <section className="max-w-7xl mx-auto px-6 py-20">
+        <h2 className="text-3xl font-light mb-12">2026 Goals</h2>
+        <div className="space-y-8">
+          {goals.map((goal) => {
+            if (goal.type === 'status') {
+              // Status badge style
+              const badgeStyles = {
+                'not yet': 'bg-gray-100 text-gray-500',
+                'in progress': 'bg-sky-100 text-sky-600',
+                'done': 'bg-green-100 text-green-600'
+              };
+              return (
+                <div key={goal.id} className="space-y-2">
+                  <div className="flex justify-between items-center">
+                    <h3 className="text-xl font-light">{goal.title}</h3>
+                    <span className={`text-sm px-3 py-1 rounded-full ${badgeStyles[goal.status]}`}>
+                      {goal.status}
+                    </span>
+                  </div>
+                  <p className="text-gray-600 text-sm">{goal.description}</p>
+                </div>
+              );
+            }
+
+            // Progress bar style
+            const percentage = Math.min((goal.current / goal.target) * 100, 100);
+            return (
+              <div key={goal.id} className="space-y-3">
+                <div className="flex justify-between items-baseline">
+                  <h3 className="text-xl font-light">{goal.title}</h3>
+                  <span className="text-sm text-gray-500">
+                    {goal.current} / {goal.target} {goal.unit} ({percentage.toFixed(1)}%)
+                  </span>
+                </div>
+                <p className="text-gray-600 text-sm">{goal.description}</p>
+                {/* Progress Bar */}
+                <div className="w-full h-3 bg-gray-100 rounded-full overflow-hidden">
+                  <div
+                    className="h-full bg-sky-400 rounded-full transition-all duration-500"
+                    style={{ width: `${percentage}%` }}
+                  ></div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
       {/* Footer */}
-      <footer className="border-t border-gray-200 py-8 mt-20">
+      <footer className="border-t border-gray-200 py-8">
         <div className="max-w-7xl mx-auto px-6 text-center text-gray-500 text-sm">
           <p>© {new Date().getFullYear()} Marc. All rights reserved.</p>
         </div>
