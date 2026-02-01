@@ -613,9 +613,12 @@ javascriptconst projects = [
   },
 ];
 Step 3: Push to GitHub
-bashgit add .
+bash
+git add .
 git commit -m "Add project images"
 git push
+OR
+git add . && git commit -m "....." && git push
 Vercel will automatically include everything in public when it deploys!
 
 # Common Files Developers Add:
