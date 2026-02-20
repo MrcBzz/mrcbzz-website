@@ -11,11 +11,13 @@ const Portfolio = () => {
       id: 1,
       title: 'LIVE - QUANT FINANCE TOOL',
       tags: ['terminal-based', 'analysis', 'quant'],
-      description: '> taking inspiration from a guy on X \n> Im building a tool for quantitative data analysis \n> merges data from AsterDEX and Hyperliquid \n> data comes from api and websocket \n> smart money will know us \n>',
+      description: '> \n> Im building a tool for quantitative data analysis \n> merges data from AsterDEX and Hyperliquid \n> integrated strategies \n> integrating stat and math \n> my agent will have great tools \n> \n> Im backtesting via oracle cloud infra',
       images: [
         '/projects/quant-finance-tool/asterdex-liquidation.png',
         '/projects/quant-finance-tool/asterdex-live-liquidation.png',
-        '/projects/quant-finance-tool/asterdex-market-data.png'
+        '/projects/quant-finance-tool/asterdex-market-data.png',
+        '/projects/quant-finance-tool/data-viewer-1.png',
+        '/projects/quant-finance-tool/06_signal_generator.png'
       ]
     },
     {
@@ -40,7 +42,7 @@ const Portfolio = () => {
       title: 'I read 3650 pages',
       description: 'ten pages a day',
       type: 'progress',
-      current: 497,
+      current: 692,
       target: 3650,
       unit: 'pages'
     },
@@ -117,7 +119,7 @@ const Portfolio = () => {
           <div>
             <h1 className="text-4xl font-light mb-2">Marc</h1>
             <div className="flex items-center gap-4">
-              <p className="text-gray-600">Writer & Creator</p>
+              <p className="text-gray-600">Creator & tryin' become Dev</p>
               <span className="text-gray-400">•</span>
               <a 
                 href="https://x.com/mrcbzz"
