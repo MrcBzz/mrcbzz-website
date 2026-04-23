@@ -42,7 +42,7 @@ const Portfolio = () => {
       title: 'I read 3650 pages',
       description: 'ten pages a day',
       type: 'progress',
-      current: 1138,
+      current: 1371,
       target: 3650,
       unit: 'pages'
     },
